@@ -112,6 +112,40 @@ struct BBClass__m_game_Tank _m_game_Tank={
 	,sizeof(void*)
 };
 
+void __m_game_BumObject_New(struct _m_game_BumObject_obj* o) {
+	bbObjectCtor((BBOBJECT)o);
+	o->clas = &_m_game_BumObject;
+}
+struct BBDebugScope_1 _m_game_BumObject_scope ={
+	BBDEBUGSCOPE_USERTYPE,
+	"BumObject",
+	{
+		{
+			BBDEBUGDECL_TYPEMETHOD,
+			"New",
+			"()i",
+			.var_address=(void*)&__m_game_BumObject_New
+		},
+		BBDEBUGDECL_END
+	}
+};
+struct BBClass__m_game_BumObject _m_game_BumObject={
+	&bbObjectClass,
+	bbObjectFree,
+	(BBDebugScope*)&_m_game_BumObject_scope,
+	sizeof(struct _m_game_BumObject_obj),
+	(void (*)(BBOBJECT))__m_game_BumObject_New,
+	bbObjectDtor,
+	bbObjectToString,
+	bbObjectCompare,
+	bbObjectSendMessage,
+	0,
+	0,
+	0
+	,0
+	,sizeof(void*)
+};
+
 static int _bb_main_inited = 0;
 int _bb_main(){
 	if (!_bb_main_inited) {
@@ -168,6 +202,7 @@ int _bb_main(){
 		__bb_pub_vulkan_vulkan();
 		__bb_pub_xmmintrin_xmmintrin();
 		bbObjectRegisterType((BBCLASS)&_m_game_Tank);
+		bbObjectRegisterType((BBCLASS)&_m_game_BumObject);
 		brl_graphics_Graphics(1280,720,0,60,0,-1,-1);
 		while(!(brl_polledinput_KeyDown(27)!=0)){
 		}

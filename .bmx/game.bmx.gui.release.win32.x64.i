@@ -52,3 +52,6 @@ import pub.xmmintrin
 Tank^Object{
 -New()="_m_game_Tank_New"
 }="_m_game_Tank"
+BumObject^Object{
+-New()="_m_game_BumObject_New"
+}="_m_game_BumObject"
