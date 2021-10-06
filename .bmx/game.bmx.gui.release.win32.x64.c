@@ -5,6 +5,12 @@ static BBString _s10={
 	2,
 	{13,10}
 };
+static BBString _s11={
+	&bbStringClass,
+	0xe62a85b97054d1f5,
+	10,
+	{53,46,48,48,48,48,48,48,48,48}
+};
 static BBString _s0={
 	&bbStringClass,
 	0x75cdc067fd4d9b00,
@@ -78,25 +84,134 @@ static BBString _s8={
 	{111,116,104,101,114}
 };
 struct BBDebugScope_1{int kind; const char *name; BBDebugDecl decls[2]; };
-void __m_game_Tank_New(struct _m_game_Tank_obj* o) {
+struct BBDebugScope_2{int kind; const char *name; BBDebugDecl decls[3]; };
+struct BBDebugScope_6{int kind; const char *name; BBDebugDecl decls[7]; };
+void __m_game_DrawObject_New(struct _m_game_DrawObject_obj* o) {
 	bbObjectCtor((BBOBJECT)o);
-	o->clas = &_m_game_Tank;
+	o->clas = &_m_game_DrawObject;
 }
-struct BBDebugScope_1 _m_game_Tank_scope ={
+BBINT __m_game_DrawObject_Draw_ff(struct _m_game_DrawObject_obj* o,BBFLOAT bbt_x,BBFLOAT bbt_y){
+	brl_max2d_SetColor(255,255,255);
+	brl_max2d_SetTransform(0.000000000f,1.00000000f,1.00000000f);
+	brl_max2d_DrawRect(bbt_x,bbt_y,100.000000f,100.000000f);
+	return 0;
+}
+struct BBDebugScope_2 _m_game_DrawObject_scope ={
+	BBDEBUGSCOPE_USERTYPE,
+	"DrawObject",
+	{
+		{
+			BBDEBUGDECL_TYPEMETHOD,
+			"New",
+			"()i",
+			.var_address=(void*)&__m_game_DrawObject_New
+		},
+		{
+			BBDEBUGDECL_TYPEMETHOD,
+			"Draw",
+			"(f,f)i",
+			.var_address=(void*)&__m_game_DrawObject_Draw_ff
+		},
+		BBDEBUGDECL_END
+	}
+};
+struct BBClass__m_game_DrawObject _m_game_DrawObject={
+	&bbObjectClass,
+	bbObjectFree,
+	(BBDebugScope*)&_m_game_DrawObject_scope,
+	sizeof(struct _m_game_DrawObject_obj),
+	(void (*)(BBOBJECT))__m_game_DrawObject_New,
+	bbObjectDtor,
+	bbObjectToString,
+	bbObjectCompare,
+	bbObjectSendMessage,
+	0,
+	0,
+	0
+	,0
+	,sizeof(void*)
+	,__m_game_DrawObject_Draw_ff
+};
+
+void __m_game_Tank_New_ff(struct _m_game_Tank_obj* o,BBFLOAT bbt_x,BBFLOAT bbt_y) {
+	__m_game_DrawObject_New((struct _m_game_DrawObject_obj*)o);
+	o->clas = &_m_game_Tank;
+	o->__m_game_tank_x = .00000000f;
+	o->__m_game_tank_y = .00000000f;
+	o->__m_game_tank_x =bbt_x;
+	o->__m_game_tank_y =bbt_y;
+}
+struct _m_game_Tank_obj* __m_game_Tank_New_ff_ObjectNew(BBClass * clas,BBFLOAT bbt_x,BBFLOAT bbt_y) {
+	struct _m_game_Tank_obj* o = bbObjectAtomicNewNC(clas);
+	__m_game_Tank_New_ff(o, bbt_x, bbt_y);
+	return o;
+}
+void __m_game_Tank_New(struct _m_game_Tank_obj* o) {
+	__m_game_DrawObject_New((struct _m_game_DrawObject_obj*)o);
+	o->clas = &_m_game_Tank;
+	o->__m_game_tank_x = .00000000f;
+	o->__m_game_tank_y = .00000000f;
+}
+BBINT __m_game_Tank_Update(struct _m_game_Tank_obj* o){
+	if(brl_polledinput_KeyDown(87)!=0){
+		o->__m_game_tank_y -=5.00000000f;
+	}
+	if(brl_polledinput_KeyDown(83)!=0){
+		o->__m_game_tank_y +=5.00000000f;
+	}
+	if(brl_polledinput_KeyDown(65)!=0){
+		o->__m_game_tank_x -=5.00000000f;
+	}
+	if(brl_polledinput_KeyDown(68)!=0){
+		o->__m_game_tank_x +=5.00000000f;
+	}
+	return 0;
+}
+struct BBDebugScope_6 _m_game_Tank_scope ={
 	BBDEBUGSCOPE_USERTYPE,
 	"Tank",
 	{
+		{
+			BBDEBUGDECL_CONST,
+			"SPEED",
+			"f",
+			.const_value=&_s11
+		},
+		{
+			BBDEBUGDECL_FIELD,
+			"x",
+			"f",
+			.field_offset=offsetof(struct _m_game_Tank_obj,__m_game_tank_x)
+		},
+		{
+			BBDEBUGDECL_FIELD,
+			"y",
+			"f",
+			.field_offset=offsetof(struct _m_game_Tank_obj,__m_game_tank_y)
+		},
 		{
 			BBDEBUGDECL_TYPEMETHOD,
 			"New",
 			"()i",
 			.var_address=(void*)&__m_game_Tank_New
 		},
+		{
+			BBDEBUGDECL_TYPEFUNCTION,
+			"New",
+			"(f,f):Tank",
+			.var_address=(void*)&__m_game_Tank_New_ff
+		},
+		{
+			BBDEBUGDECL_TYPEMETHOD,
+			"Update",
+			"()i",
+			.var_address=(void*)&__m_game_Tank_Update
+		},
 		BBDEBUGDECL_END
 	}
 };
 struct BBClass__m_game_Tank _m_game_Tank={
-	&bbObjectClass,
+	&_m_game_DrawObject,
 	bbObjectFree,
 	(BBDebugScope*)&_m_game_Tank_scope,
 	sizeof(struct _m_game_Tank_obj),
@@ -107,11 +222,14 @@ struct BBClass__m_game_Tank _m_game_Tank={
 	bbObjectSendMessage,
 	0,
 	0,
-	0
+	offsetof(struct _m_game_Tank_obj,__m_game_tank_y) - offsetof(struct _m_game_Tank_obj,__m_game_tank_x) + sizeof(BBFLOAT)
 	,0
-	,sizeof(void*)
+	,offsetof(struct _m_game_Tank_obj,__m_game_tank_x)
+	,__m_game_DrawObject_Draw_ff
+	,__m_game_Tank_Update
 };
 
+struct _m_game_Tank_obj* _m_game_Player=(struct _m_game_Tank_obj*)(&bbNullObject);
 void __m_game_BumObject_New(struct _m_game_BumObject_obj* o) {
 	bbObjectCtor((BBOBJECT)o);
 	o->clas = &_m_game_BumObject;
@@ -150,6 +268,7 @@ static int _bb_main_inited = 0;
 int _bb_main(){
 	if (!_bb_main_inited) {
 		_bb_main_inited = 1;
+		GC_add_roots(&_m_game_Player, &_m_game_Player + 1);
 		__bb_brl_blitz_blitz();
 		__bb_brl_appstub_appstub();
 		__bb_brl_audio_audio();
@@ -201,10 +320,16 @@ int _bb_main(){
 		__bb_pub_opengles3_opengles3();
 		__bb_pub_vulkan_vulkan();
 		__bb_pub_xmmintrin_xmmintrin();
+		bbObjectRegisterType((BBCLASS)&_m_game_DrawObject);
 		bbObjectRegisterType((BBCLASS)&_m_game_Tank);
 		bbObjectRegisterType((BBCLASS)&_m_game_BumObject);
 		brl_graphics_Graphics(1280,720,0,60,0,-1,-1);
+		_m_game_Player=(struct _m_game_Tank_obj*)__m_game_Tank_New_ff_ObjectNew((struct _m_game_Tank_obj*)&_m_game_Tank,640.000000f,360.000000f);
 		while(!(brl_polledinput_KeyDown(27)!=0)){
+			(_m_game_Player)->clas->m_Draw_ff((struct _m_game_DrawObject_obj*)_m_game_Player,_m_game_Player->__m_game_tank_x ,_m_game_Player->__m_game_tank_y );
+			(_m_game_Player)->clas->m_Update((struct _m_game_Tank_obj*)_m_game_Player);
+			brl_graphics_Flip(1);
+			brl_max2d_Cls();
 		}
 		return 0;
 	}

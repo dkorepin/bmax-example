@@ -49,9 +49,19 @@ import pub.opengles
 import pub.opengles3
 import pub.vulkan
 import pub.xmmintrin
-Tank^Object{
--New()="_m_game_Tank_New"
+DrawObject^Object{
+-New()="__m_game_DrawObject_New"
+-Draw%(x#,y#)="_m_game_DrawObject_Draw_ff"
+}="_m_game_DrawObject"
+Tank^DrawObject{
+SPEED#=5.00000000#
+.x#&
+.y#&
+-New()="__m_game_Tank_New"
+-New(x#,y#)="_m_game_Tank_New_ff"
+-Update%()="_m_game_Tank_Update"
 }="_m_game_Tank"
 BumObject^Object{
 -New()="_m_game_BumObject_New"
 }="_m_game_BumObject"
+Player:Tank&=mem:p("_m_game_Player")

@@ -53,10 +53,13 @@
 #include <pub.mod/vulkan.mod/.bmx/vulkan.bmx.release.win32.x64.h>
 #include <pub.mod/xmmintrin.mod/.bmx/xmmintrin.bmx.release.win32.x64.h>
 int _bb_main();
+struct _m_game_DrawObject_obj;
 struct _m_game_Tank_obj;
 struct _m_game_BumObject_obj;
-void __m_game_Tank_New(struct _m_game_Tank_obj* o);
-struct BBClass__m_game_Tank {
+void __m_game_DrawObject_New(struct _m_game_DrawObject_obj* o);
+typedef BBINT (*_m_game_DrawObject_Draw_ff_m)(struct _m_game_DrawObject_obj*,BBFLOAT,BBFLOAT);
+BBINT __m_game_DrawObject_Draw_ff(struct _m_game_DrawObject_obj*,BBFLOAT,BBFLOAT);
+struct BBClass__m_game_DrawObject {
 	BBClass*  super;
 	void      (*free)( BBObject *o );
 	BBDebugScope* debug_scope;
@@ -71,12 +74,44 @@ struct BBClass__m_game_Tank {
 	unsigned int obj_size;
 	unsigned int instance_count;
 	unsigned int fields_offset;
+	_m_game_DrawObject_Draw_ff_m m_Draw_ff;
+};
+
+struct _m_game_DrawObject_obj {
+	struct BBClass__m_game_DrawObject* clas;
+};
+extern struct BBClass__m_game_DrawObject _m_game_DrawObject;
+void __m_game_Tank_New_ff(struct _m_game_Tank_obj* o,BBFLOAT bbt_x,BBFLOAT bbt_y);
+struct _m_game_Tank_obj* __m_game_Tank_New_ff_ObjectNew(BBClass * clas,BBFLOAT bbt_x,BBFLOAT bbt_y);
+void __m_game_Tank_New(struct _m_game_Tank_obj* o);
+typedef BBINT (*_m_game_Tank_Update_m)(struct _m_game_Tank_obj*);
+BBINT __m_game_Tank_Update(struct _m_game_Tank_obj*);
+struct BBClass__m_game_Tank {
+	struct BBClass__m_game_DrawObject*  super;
+	void      (*free)( BBObject *o );
+	BBDebugScope* debug_scope;
+	unsigned int instance_size;
+	void      (*ctor)( BBOBJECT o );
+	void      (*dtor)( BBOBJECT o );
+	BBSTRING  (*ToString)( BBOBJECT x );
+	int       (*Compare)( BBOBJECT x,BBOBJECT y );
+	BBOBJECT  (*SendMessage)( BBOBJECT o,BBOBJECT m,BBOBJECT s );
+	BBINTERFACETABLE itable;
+	void*     extra;
+	unsigned int obj_size;
+	unsigned int instance_count;
+	unsigned int fields_offset;
+	_m_game_DrawObject_Draw_ff_m m_Draw_ff;
+	_m_game_Tank_Update_m m_Update;
 };
 
 struct _m_game_Tank_obj {
 	struct BBClass__m_game_Tank* clas;
+	BBFLOAT __m_game_tank_x;
+	BBFLOAT __m_game_tank_y;
 };
 extern struct BBClass__m_game_Tank _m_game_Tank;
+extern struct _m_game_Tank_obj* _m_game_Player;
 void __m_game_BumObject_New(struct _m_game_BumObject_obj* o);
 struct BBClass__m_game_BumObject {
 	BBClass*  super;
