@@ -1,4 +1,4 @@
-Type Tank
+Type Tank extends DrawObject
 	
 	Method New()
 		

@@ -1,4 +1,5 @@
 Include "class/Tank.bmx"
+Include "class/Abstract.bmx"
 
 
 Graphics(1280 , 720, 0, 60, 0 );
