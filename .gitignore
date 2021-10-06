@@ -1,0 +1,11 @@
+*.exe
+*.bak
+*.c
+*.h
+*.i
+*.i2
+*.o
+*.manifest
+*.rc
+*.as
+*.otf
