@@ -16,6 +16,10 @@ Global rotation:int = 0
 		
 	EndMethod
 
+	Method Shoot()
+		Bullet.Shoot(self);
+	EndMethod
+
 	Method Update()
 
 			If KeyDown( KEY_W ) 'and y>=0
@@ -34,6 +38,7 @@ Global rotation:int = 0
 				
 				' x:+ SPEED;
 			EndIf
+			If KeyHit( KEY_SPACE ) Shoot();
 	EndMethod
 	Method Draw()
 		SetColor( 255, 0, 234 );

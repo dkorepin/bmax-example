@@ -1,0 +1,14 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "bmx",
+            "name": "Default BlitzMax debug",
+            "request": "launch",
+            "source": "E:/Projects/bmax-example/game.bmx"
+        }
+    ]
+}

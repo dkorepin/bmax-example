@@ -10,3 +10,4 @@
 *.as
 *.otf
 *.s
+**/.vscode/

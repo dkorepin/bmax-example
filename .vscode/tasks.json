@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "bmx",
+            "label": "BlitzMax: Default",
+            "detail": "Automatically generated BlitzMax task",
+            "funcargcasting": "warning",
+            "make": "application",
+            "apptype": "console",
+            "source": "${file}",
+            "fullcompile": true,
+            "quick": false,
+            "hidpi": true,
+            "architecture": "x64",
+            "target": "win32",
+            "debug": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "threaded": true
+        }
+    ]
+}

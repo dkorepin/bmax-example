@@ -1,3 +1,4 @@
+SuperStrict
 Include "class/Tank.bmx"
 Include "class/Bum.bmx"
 Include "class/Abstract.bmx"
@@ -11,11 +12,13 @@ Player = New Tank(100,100);
 
 
 While Not KeyDown ( KEY_ESCAPE )
+	Bullet.UpdateAll();
 	Player.Draw()
 	Player.Update()
 	
 
-
+	Bullet.DrawAll();
+	DrawGameInfo();
 	Flip( 1 )
 	Cls()
 	
