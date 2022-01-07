@@ -8,6 +8,5 @@
 *.manifest
 *.rc
 *.as
-*.otf
 *.s
 .vscode/launch.json
