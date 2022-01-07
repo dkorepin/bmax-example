@@ -1,12 +1,13 @@
 Type Background
-	Field y:float, speedY:float;
+	Field y:float=0;
+	const speedY:float= 1;
 
 	Method Update()
-		
+		y=y+speedY;
 		
 	EndMethod
 	Method Draw()
-		DrawImage( backgroundImage, 0,0, 0 )
+		TileImage( backgroundImage, 0,y, 0 )
 		
 	EndMethod
 EndType
