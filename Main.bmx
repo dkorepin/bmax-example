@@ -26,13 +26,12 @@ Global shootAudio: TSound, explosionAudio: TSound, musicAudio: TSound;
 Graphics(1280 , 720, 0, 60, 0 );
 InitGame();
 
-
-While Not KeyDown ( KEY_ESCAPE )
+Repeat
 	UpdateGame();
 	RenderGame();
 	Flip( 1 )
 	Cls()
-Wend
+Until KeyDown ( KEY_ESCAPE ) Or  AppTerminate()
 
 Function RenderGame()
 	backgroundInst.Draw();
