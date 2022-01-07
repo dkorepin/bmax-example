@@ -26,7 +26,30 @@ Global shootAudio: TSound, explosionAudio: TSound, musicAudio: TSound;
 Graphics(1280 , 720, 0, 60, 0 );
 InitGame();
 
+
 While Not KeyDown ( KEY_ESCAPE )
+	UpdateGame();
+	RenderGame();
+	Flip( 1 )
+	Cls()
+Wend
+
+Function RenderGame()
+	backgroundInst.Draw();
+	playerInst.Draw();
+	For Local enemy:Enemyship = EachIn enemylist
+		enemy.Draw();
+	Next
+	For Local bull:Bullet = EachIn bulletlist
+		bull.Draw();
+	Next
+	For Local expl:Explosion = EachIn explosionsList
+		expl.Draw();
+	Next
+	uiInst.Draw();
+EndFunction
+
+Function UpdateGame()
 	backgroundInst.Update();
 	playerInst.Update();
 	For Local enemy:Enemyship = EachIn enemylist
@@ -39,14 +62,14 @@ While Not KeyDown ( KEY_ESCAPE )
 		expl.Update();
 	Next
 	uiInst.Update();
-	Flip( 1 )
-	Cls()
-Wend
+EndFunction
 
 Function InitGame()
+	backgroundImage = LoadImage( "./src/bckg.png" );
+
 	shootAudio = LoadSound("./src/snd/shoot.ogg");
 	explosionAudio = LoadSound("./src/snd/explo.ogg");
 	musicAudio = LoadSound("./src/snd/music.ogg", SOUND_LOOP);
-
+	
 	PlaySound( musicAudio );
 EndFunction
