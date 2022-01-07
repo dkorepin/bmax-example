@@ -14,6 +14,10 @@ type Playership
 		if KeyDown( KEY_D ) and (X<=1250)
 			x=x+speedX;
 		EndIf
+		If KeyHit( KEY_W )
+			local bull:Bullet = New Bullet(x,y);
+			bulletlist.addLast(bull);
+		EndIf
 	EndMethod
 	Method Draw()
 		DrawImage( playerImage, x, y, number )
