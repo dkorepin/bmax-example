@@ -68,7 +68,7 @@ Function InitGame()
 	SeedRnd( millisecs() );
 	backgroundImage = LoadImage( "./src/bckg.png" );
 	playerImage = LoadAnimImage( "./src/ships.png",60,66,0,24)
-
+	bulletImage =LoadImage("./src/bullet.png" );
 
 	shootAudio = LoadSound("./src/snd/shoot.ogg");
 	explosionAudio = LoadSound("./src/snd/explo.ogg");
