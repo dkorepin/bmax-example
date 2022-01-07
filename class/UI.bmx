@@ -3,9 +3,9 @@ Type UI
 	Const LoseText$ = "You dead";
 	Field mainFont: TImageFont, bigFont: TImageFont;
 	Field hpImg:TImage, hpBarImg:TImage;
-	Field score:int, health:Int = 100;
+	Field score:int;
 	Public
-	Field isDead: byte = 0;
+	Field isDead: byte = 0, health:Int = 100;
 
 	Method Init()
 		AutoMidHandle( 0 );
@@ -48,7 +48,7 @@ Type UI
 	EndMethod
 
 	Method AddScore(sc: int)
-		score: +sc;
+		score=score  +sc;
 	EndMethod
 
 	Method SetScore()

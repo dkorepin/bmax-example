@@ -9,7 +9,6 @@ Include "class/Utils.bmx"
 Include "class/Background.bmx"
 
 Global playerImage:TImage;
-Global enemyImage:TImage;
 Global uiImage:TImage;
 Global bulletImage:TImage;
 Global explosionImage:TImage;
@@ -26,6 +25,7 @@ Global shootAudio: TSound, explosionAudio: TSound, musicAudio: TSound;
 
 Graphics(1280 , 720, 0, 60, 0 );
 InitGame();
+StartGame();
 
 Repeat
 	UpdateGame();
@@ -33,6 +33,12 @@ Repeat
 	Flip( 1 )
 	Cls()
 Until KeyDown ( KEY_ESCAPE ) Or  AppTerminate()
+Function StartGame()
+	local EnemyshipInst:Enemyship = New Enemyship(400,400,3,50);
+	enemylist.addLast(EnemyshipInst)
+
+	
+EndFunction
 
 Function RenderGame()
 	backgroundInst.Draw();
@@ -51,12 +57,21 @@ EndFunction
 
 Function UpdateGame()
 	backgroundInst.Update();
+	If uiInst.isDead=0
 	playerInst.Update();
+	EndIf
 	For Local enemy:Enemyship = EachIn enemylist
 		enemy.Update();
+		if enemy.health <=0
+			enemylist.remove(enemy);
+			uiInst.Addscore(10);
+		EndIf
 	Next
 	For Local bull:Bullet = EachIn bulletlist
 		bull.Update();
+		if bull.y < 0 
+			bulletlist.remove(bull)
+		EndIf
 	Next
 	For Local expl:Explosion = EachIn explosionsList
 		expl.Update();
