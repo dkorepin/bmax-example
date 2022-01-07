@@ -15,7 +15,7 @@ Global bulletImage:TImage;
 Global explosionImage:TImage;
 Global backgroundImage:TImage;
 
-Global playerInst:Playership= New Playership();
+Global playerInst:Playership= New Playership(640,690);
 Global uiInst:UI= New UI();
 Global backgroundInst:Background = New Background();
 Global bulletlist:TList = New TList();
@@ -65,7 +65,11 @@ Function UpdateGame()
 EndFunction
 
 Function InitGame()
+	AutoMidHandle( 1 );
+	SeedRnd( millisecs() );
 	backgroundImage = LoadImage( "./src/bckg.png" );
+	playerImage = LoadAnimImage( "./src/ships.png",60,66,0,24)
+
 
 	shootAudio = LoadSound("./src/snd/shoot.ogg");
 	explosionAudio = LoadSound("./src/snd/explo.ogg");
