@@ -9,9 +9,27 @@ Type Enemyship
 	EndMethod
 	Method Update()
 		if rand(0,100 )<5
-		local bull:Bullet = New Bullet(x,y,0);
+			local bull:Bullet = New Bullet(x,y,0);
 			bulletlist.addLast(bull);
 		EndIf
+		For Local bull:Bullet = EachIn bulletlist
+
+			if bull.isPlayer =1 and collision(bull.x,bull.y) = 1 
+				bulletlist.remove(bull)
+				health = health - 45;
+				
+			EndIF
+		Next
+	EndMethod
+	Method Collision:byte(bullX:float,bullY:float)
+		local Dist:float;
+		Dist=sqr((bullX-x)^2+(bullY-y)^2);
+		If Dist<=25
+			Return 1;
+		else 
+			Return 0;
+		EndIF
+		
 	EndMethod
 	Method Draw()
 		SetRotation( 180 );

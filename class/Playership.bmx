@@ -18,6 +18,25 @@ type Playership
 			local bull:Bullet = New Bullet(x,y,1);
 			bulletlist.addLast(bull);
 		EndIf
+		For Local bull:Bullet = EachIn bulletlist
+			if bull.isPlayer = 0  and collision(bull.x,bull.y) = 1
+				bulletlist.remove(bull)
+				uiInst.health =uiInst.health - 45;	
+				if uiInst.health <=0
+					uiInst.isDead = 1;
+				EndIf
+			EndIf
+		Next
+	EndMethod
+	Method Collision:byte(bullX:float,bullY:float)
+		local Dist:float;
+		Dist=sqr((bullX-x)^2+(bullY-y)^2);
+		If Dist<=25
+			Return 1;
+		else 
+			Return 0;
+		EndIF
+		
 	EndMethod
 	Method Draw()
 		DrawImage( playerImage, x, y, number )

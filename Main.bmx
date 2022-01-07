@@ -57,9 +57,15 @@ EndFunction
 
 Function UpdateGame()
 	backgroundInst.Update();
+	If uiInst.isDead=0
 	playerInst.Update();
+	EndIf
 	For Local enemy:Enemyship = EachIn enemylist
 		enemy.Update();
+		if enemy.health <=0
+			enemylist.remove(enemy);
+			uiInst.Addscore(10);
+		EndIf
 	Next
 	For Local bull:Bullet = EachIn bulletlist
 		bull.Update();
