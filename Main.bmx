@@ -64,9 +64,10 @@ Function UpdateGame()
 EndFunction
 
 Function InitGame()
-	AutoMidHandle( 1 )
+	AutoMidHandle( 1 );
+	SeedRnd( millisecs() );
 	backgroundImage = LoadImage( "./src/bckg.png" );
-	playerImage = LoadAnimImage( "./src/ships.png",60,61,0,24)
+	playerImage = LoadAnimImage( "./src/ships.png",60,66,0,24)
 
 
 	shootAudio = LoadSound("./src/snd/shoot.ogg");
