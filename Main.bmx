@@ -76,4 +76,5 @@ Function InitGame()
 	musicAudio = LoadSound("./src/snd/music.ogg", SOUND_LOOP);
 	
 	' PlaySound( musicAudio );
+	uiInst.Init();
 EndFunction
