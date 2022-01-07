@@ -10,4 +10,4 @@
 *.as
 *.otf
 *.s
-**/.vscode/
+.vscode/launch.json
