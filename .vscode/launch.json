@@ -8,7 +8,7 @@
             "type": "bmx",
             "name": "Default BlitzMax debug",
             "request": "launch",
-            "source": "C:/Users/Алексей/Desktop/Game/bmax-example"
+            "source": "D:/Int Game/bmax-example/Main.bmx"
         }
     ]
 }
