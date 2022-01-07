@@ -5,6 +5,7 @@ Include "class/Enemyship.bmx"
 Include "class/Explosion.bmx"
 Include "class/Bullet.bmx"
 Include "class/UI.bmx"
+Include "class/Utils.bmx"
 Include "class/Background.bmx"
 
 Global playerImage:TImage;
@@ -70,5 +71,5 @@ Function InitGame()
 	explosionAudio = LoadSound("./src/snd/explo.ogg");
 	musicAudio = LoadSound("./src/snd/music.ogg", SOUND_LOOP);
 	
-	PlaySound( musicAudio );
+	' PlaySound( musicAudio );
 EndFunction

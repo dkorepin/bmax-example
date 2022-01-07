@@ -7,7 +7,10 @@ Type Background
 		
 	EndMethod
 	Method Draw()
-		TileImage( backgroundImage, 0,y, 0 )
-		
+		Reset();
+		TileImage( backgroundImage, 0, y, 0 );
+		SetBlend( LIGHTBLEND );
+		TileImage( backgroundImage, 250, y*0.5, 0 );
+		Reset();
 	EndMethod
 EndType
