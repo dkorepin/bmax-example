@@ -48,7 +48,7 @@ Type UI
 	EndMethod
 
 	Method AddScore(sc: int)
-		score: +sc;
+		score=score  +sc;
 	EndMethod
 
 	Method SetScore()

@@ -15,7 +15,7 @@ type Playership
 			x=x+speedX;
 		EndIf
 		If KeyHit( KEY_W )
-			local bull:Bullet = New Bullet(x,y);
+			local bull:Bullet = New Bullet(x,y,1);
 			bulletlist.addLast(bull);
 		EndIf
 	EndMethod
