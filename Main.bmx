@@ -26,7 +26,7 @@ Global shootAudio: TSound, explosionAudio: TSound, musicAudio: TSound;
 Graphics(1280 , 720, 0, 60, 0 );
 InitGame();
 
-While Not KeyDown ( KEY_ESCAPE )
+Repeat
 	backgroundInst.Update();
 	playerInst.Update();
 	For Local enemy:Enemyship = EachIn enemylist
@@ -41,7 +41,7 @@ While Not KeyDown ( KEY_ESCAPE )
 	uiInst.Update();
 	Flip( 1 )
 	Cls()
-Wend
+Until KeyDown ( KEY_ESCAPE ) Or  AppTerminate()
 
 Function InitGame()
 	shootAudio = LoadSound("./src/snd/shoot.ogg");
