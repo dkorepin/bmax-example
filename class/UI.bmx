@@ -5,7 +5,7 @@ Type UI
 	Field hpImg:TImage, hpBarImg:TImage;
 	Field score:int, health:Int = 100;
 	Public
-	Field isDead: byte = 1;
+	Field isDead: byte = 0;
 
 	Method Init()
 		AutoMidHandle( 0 );
