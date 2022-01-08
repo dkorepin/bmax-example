@@ -11,6 +11,7 @@ Type Enemyship
 		if rand(0,100 )<5
 			local bull:Bullet = New Bullet(x,y,0);
 			bulletlist.addLast(bull);
+			PlaySound( shootAudio )
 		EndIf
 		For Local bull:Bullet = EachIn bulletlist
 

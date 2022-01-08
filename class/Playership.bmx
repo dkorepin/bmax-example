@@ -17,6 +17,7 @@ type Playership
 		If KeyHit( KEY_W )
 			local bull:Bullet = New Bullet(x,y,1);
 			bulletlist.addLast(bull);
+			PlaySound( shootAudio )
 		EndIf
 		For Local bull:Bullet = EachIn bulletlist
 			if bull.isPlayer = 0  and collision(bull.x,bull.y) = 1
@@ -24,6 +25,10 @@ type Playership
 				uiInst.health =uiInst.health - 45;	
 				if uiInst.health <=0
 					uiInst.isDead = 1;
+					Local expl:Explosion = New Explosion(x,y)
+						explosionsList.addlast(expl)
+						
+						PlaySound( explosionAudio)
 				EndIf
 			EndIf
 		Next
