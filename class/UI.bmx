@@ -6,6 +6,7 @@ Type UI
 	Field score:int;
 	Public
 	Field isDead: byte = 0, health:Int = 100;
+	Field isTheEnd:byte = 0;
 
 	Method Init()
 		AutoMidHandle( 0 );

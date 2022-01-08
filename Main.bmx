@@ -34,7 +34,7 @@ Repeat
 	Cls()
 Until KeyDown ( KEY_ESCAPE ) Or  AppTerminate()
 Function StartGame()
-	local EnemyshipInst:Enemyship = New Enemyship(400,400,3,50);
+	local EnemyshipInst:Enemyship = New Enemyship(720,100,3,50);
 	enemylist.addLast(EnemyshipInst)
 
 	
@@ -65,6 +65,9 @@ Function UpdateGame()
 		if enemy.health <=0
 			enemylist.remove(enemy);
 			uiInst.Addscore(10);
+			Local expl:Explosion = New Explosion(enemy.x,enemy.y)
+			explosionsList.addlast(expl)
+			PlaySound( explosionAudio )
 		EndIf
 	Next
 	For Local bull:Bullet = EachIn bulletlist
@@ -75,13 +78,19 @@ Function UpdateGame()
 	Next
 	For Local expl:Explosion = EachIn explosionsList
 		expl.Update();
+		if expl.frame = 15
+			explosionsList.remove(expl)
+		endif
+
 	Next
 	uiInst.Update();
+	DebugLog( explosionsList.count())
 EndFunction
 
 Function InitGame()
 	AutoMidHandle( 1 );
 	SeedRnd( millisecs() );
+	explosionImage = LoadAnimImage( "./src/explo.png", 64, 64, 0, 16, -1 );
 	backgroundImage = LoadImage( "./src/bckg.png" );
 	playerImage = LoadAnimImage( "./src/ships.png",60,66,0,24)
 	bulletImage =LoadImage("./src/bullet.png" );
@@ -90,6 +99,6 @@ Function InitGame()
 	explosionAudio = LoadSound("./src/snd/explo.ogg");
 	musicAudio = LoadSound("./src/snd/music.ogg", SOUND_LOOP);
 	
-	' PlaySound( musicAudio );
+	PlaySound( musicAudio );
 	uiInst.Init();
 EndFunction
